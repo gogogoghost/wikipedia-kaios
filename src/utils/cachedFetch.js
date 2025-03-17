@@ -19,11 +19,14 @@ export const cachedFetch = (url, transformFn, cache = true, format = 'json', hea
     xhr.responseType = format
     xhr.open('GET', url)
     if (!isRequestHeaderDisabled()) {
-      xhr.setRequestHeader('User-Agent', `WikipediaApp/${appVersion()} ${navigator.userAgent}`)
-      xhr.setRequestHeader('Referer', 'https://www.wikipedia.org')
+      // xhr.setRequestHeader('User-Agent', `WikipediaApp/${appVersion()} ${navigator.userAgent}`)
+      // xhr.setRequestHeader('Referer', 'https://www.wikipedia.org')
 
       if (Object.keys(header).length) {
         for (const key in header) {
+          if(key=="X-Analytics"){
+            continue
+          }
           xhr.setRequestHeader(key, header[key])
         }
       }
